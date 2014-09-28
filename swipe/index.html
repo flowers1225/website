@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="Cache-Control" content="no-cache" />
+	<meta name="robots" content="all">
+	<meta name="author" content="Tencent-CP">
+	<meta name="Copyright" content="Tencent">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui" />
+	<meta name="format-detection" content="telephone=no,address=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<link rel="stylesheet" href="css/reset.css">
+	<style>
+	.ns-swipe{
+	  overflow: hidden;
+	  visibility: hidden;
+	  position: relative;
+	  width:100%;
+	  height:100%;
+	}
+	.swipe-wrap {
+	  overflow: hidden;
+	  position: relative;
+	  width:100%;
+	  height:100%;
+	}
+	.m-section {
+		position: relative;
+		width: 100%;
+		height: 100%;
+		overflow: hidden;
+	}
+	.swipe-1 .ns-one{
+		background:#3773bc;
+	}
+	.swipe-1 .ns-two{
+		background:#893ca6;
+	}
+	.swipe-1 .ns-three{
+		background:#bc374d;
+	}
+	</style>
+</head>
+<body>
+	<div class='ns-swipe swipe-1'>
+		<div class='swipe-wrap'>
+			<div class='m-section ns-one'></div>
+			<div class='m-section ns-two'></div>
+			<div class='m-section ns-three'></div>
+		</div>
+	</div>
+	<script src="js/zepto.js"></script>
+	<script src="js/swipe_portrait.js"></script>
+	<script>
+		(function(){
+			 mySwipe =  new Swipe(document.querySelector('.swipe'),{
+	            startSlide: 0,  //起始图片切换的索引位置
+				//auto: 3000, //设置自动切换时间，单位毫秒
+				continuous: false,  //无限循环的图片切换效果
+				disableScroll: true,  //阻止由于触摸而滚动屏幕
+				stopPropagation: false,  //停止滑动事件
+				callback: function(index, element) {},  //回调函数，切换时触发
+				transitionEnd: function(index, element) {console.log('结束')}  //回调函数，切换结束调用该函数。
+       		});
+		})()
+	</script>
+</body>
+</html>
