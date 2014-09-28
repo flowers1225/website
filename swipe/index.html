@@ -40,13 +40,29 @@
 	.swipe-1 .ns-three{
 		background:#bc374d;
 	}
+	.ns-two .text{
+		position: absolute;
+		left:50px;
+		top:200px;
+		color:#fff;
+		-webkit-transform:translate(-100px,0);
+		-webkit-transition: -webkit-transform .6s ease;		
+		transition:transform .6s ease;
+		transform:translate(-100px,0);
+	}
+	.ns-two .text.move{
+		-webkit-transform:translate(0,0);
+		transform:translate(0,0);	
+	}
 	</style>
 </head>
 <body>
 	<div class='ns-swipe swipe-1'>
 		<div class='swipe-wrap'>
 			<div class='m-section ns-one'></div>
-			<div class='m-section ns-two'></div>
+			<div class='m-section ns-two'>
+				<div class="text">你好</div>
+			</div>
 			<div class='m-section ns-three'></div>
 		</div>
 	</div>
@@ -54,14 +70,14 @@
 	<script src="js/swipe_portrait.js"></script>
 	<script>
 		(function(){
-			 mySwipe =  new Swipe(document.querySelector('.swipe'),{
+			var mySwipe =  new Swipe(document.querySelector('.ns-swipe'),{
 	            startSlide: 0,  //起始图片切换的索引位置
 				//auto: 3000, //设置自动切换时间，单位毫秒
 				continuous: false,  //无限循环的图片切换效果
 				disableScroll: true,  //阻止由于触摸而滚动屏幕
 				stopPropagation: false,  //停止滑动事件
 				callback: function(index, element) {},  //回调函数，切换时触发
-				transitionEnd: function(index, element) {console.log('结束')}  //回调函数，切换结束调用该函数。
+				transitionEnd: function(index, element) {$('.ns-two .text').addClass('move')}  //回调函数，切换结束调用该函数。
        		});
 		})()
 	</script>
