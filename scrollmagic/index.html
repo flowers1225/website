@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title></title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="job">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <script type="text/javascript" src="js/lib/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="js/lib/greenScok/TweenMax.min.js"></script>
+    <script type="text/javascript" src="js/lib/jquery.scrollmagic.min.js"></script>
+    <script type="text/javascript" src="js/lib/greenScok/plugins/ScrollToPlugin.min.js"></script>
+</head>
+<body>
+    <script type="text/javascript">
+        var controller = new ScrollMagic();
+    </script>
+    <div class="m-section">
+        <div class="section-box">
+            <div class="ns-bg"></div>
+        </div>
+        <div class="t-top"></div>
+        <div class="t-center"></div>
+        <div class="t-bottom"></div>
+    </div>
+    <script type="text/javascript">
+            var twFc = TweenMax.to(".ns-bg", 1, {scale: 1.4, delay: 0.1});
+            var fcScene = new ScrollScene({triggerElement:'.m-section .t-center', duration: $(window).height()}).setTween(twFc).addTo(controller);
+    </script>
+</body>
+</html>
