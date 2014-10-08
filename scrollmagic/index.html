@@ -11,22 +11,47 @@
     <script type="text/javascript" src="js/lib/greenScok/TweenMax.min.js"></script>
     <script type="text/javascript" src="js/lib/jquery.scrollmagic.min.js"></script>
     <script type="text/javascript" src="js/lib/greenScok/plugins/ScrollToPlugin.min.js"></script>
+    <script type="text/javascript" src="js/lib/jquery.scrollmagic.debug.js"></script>
 </head>
 <body>
     <script type="text/javascript">
         var controller = new ScrollMagic();
     </script>
     <div class="m-section">
-        <div class="section-box">
+        <div class="section-box section-box-first">
             <div class="ns-bg"></div>
+            <div class="cloth-1"></div>
+            <div class="cloth-2"></div>
+            <div class="computer"></div>
+            <div class="paper-1"></div>
+            <div class="paper-2"></div> 
+            <div class="paper-3"></div>
+            <div class="paper-4"></div>    
+            <div class="t-top"></div>
+            <div class="t-center"></div>
+            <div class="t-bottom"></div>
         </div>
-        <div class="t-top"></div>
-        <div class="t-center"></div>
-        <div class="t-bottom"></div>
+        <!-- <div class="section-box section-box-second">
+            <div class="ns-bg"></div>
+            <div class="t-top"></div>
+            <div class="t-center"></div>
+            <div class="t-bottom"></div>
+        </div> -->
     </div>
+    <script>
+        $('.section-box').height($(window).height()); 
+    </script>
     <script type="text/javascript">
-            var twFc = TweenMax.to(".ns-bg", 1, {scale: 1.4, delay: 0.1});
-            var fcScene = new ScrollScene({triggerElement:'.m-section .t-center', duration: $(window).height()}).setTween(twFc).addTo(controller);
+            var twFc = TweenMax.to('.section-box-first .ns-bg', 1, {scale: 1});
+            var fcScene = new ScrollScene({triggerElement:'.section-box-first .t-center', duration: $(window).height()}).setTween(twFc).addTo(controller);
+
+            var twCloth1 = TweenMax.to('.section-box-first .cloth-1', 1, {scale: 1});
+            var cl1Scene = new ScrollScene({triggerElement:'.section-box-first .t-center', duration: $(window).height()}).setTween(twCloth1).addTo(controller);
+
+            var twComputer = TweenMax.to('.section-box-first .computer', 1, {scale: 1});
+            var ComputerScene = new ScrollScene({triggerElement:'.section-box-first .t-center', duration: $(window).height()}).setTween(twComputer).addTo(controller);
+
+                fcScene.addIndicators();
     </script>
 </body>
 </html>

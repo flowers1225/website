@@ -53,7 +53,7 @@ html,body {
 .m-section {
     position: relative;
     width:100%;
-    height: 100%;
+    height: 10000px;
 }
 .m-section .t-top {
     position: absolute;
@@ -96,13 +96,72 @@ html,body {
     top: 0;
     left: 0;
     width: 100%;
-    height: 10000px;
+    height:100%;
 }
 .m-section .ns-bg{
-    position: fixed;
-    top: 0;
-    left: 0;
+    position:fixed;
+    top: 50%;
+    left: 50%;
+    margin-left: -2081px;
+    margin-top:-1121px;
     width: 100%;
-    height: 100%;
-    background: url(../images/1.jpg) no-repeat center;
+    height: 100%;   
+}
+.section-box-first{
+    z-index:2;
+}
+.section-box-second{
+    z-index:1;
+}
+.section-box-first .ns-bg{
+    background: url(../images/bg_1.png) no-repeat center;
+    width:4171px;
+    height:2250px;
+    -webkit-transform:scale(.5);
+
+}
+.section-box-first .cloth-1{
+    background: url(../images/cloth_1.png) no-repeat center;
+    position: fixed;
+    left:50%;
+    top:50%;
+    z-index:10;
+    width:2113px;
+    height:1922px;
+    margin-left: -1215px;
+    margin-top:-875px;
+    -webkit-transform:scale(.5);
+}
+.section-box-first .cloth-2{
+    background: url(../images/cloth_2.png) no-repeat center;
+    position: fixed;
+    left:50%;
+    top:50%;
+    z-index:10;
+    width:2150px;
+    height:1900px;
+    margin-left: -615px;
+    margin-top:-545px;
+    -webkit-transform:scale(.45);
+}
+
+.section-box-first  .computer{
+    background: url(../images/computer.png) no-repeat center;
+    position: fixed;
+    left:50%;
+    top:50%;
+    z-index:10;
+    width:2369px;
+    height:1843px;
+    margin-left: -1660px;
+    margin-top:-770px;
+    -webkit-transform:scale(.4);
+}
+
+.section-box-second .ns-bg{
+    background: url(../images/bg_1.png) no-repeat center;
+}
+
+.ScrollSceneIndicators{
+    z-index:100 !important;
 }
