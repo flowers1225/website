@@ -49,6 +49,7 @@ a {
 
 html,body {
     height: 100%;
+    background: #D6D6D6;
 }
 .m-section {
     position: relative;
@@ -114,10 +115,10 @@ html,body {
     z-index:1;
 }
 .section-box-first .ns-bg{
-    background: url(../images/bg_1.png) no-repeat center;
+    background: url(../images/bg_1.jpg) no-repeat center;
     width:4171px;
     height:2250px;
-    -webkit-transform:scale(.5);
+    -webkit-transform:scale(.45);
 
 }
 .section-box-first .cloth-1{
@@ -126,11 +127,11 @@ html,body {
     left:50%;
     top:50%;
     z-index:10;
-    width:2113px;
-    height:1922px;
-    margin-left: -1215px;
-    margin-top:-875px;
-    -webkit-transform:scale(.5);
+    width:979px;
+    height:1387px;
+    margin-left: -575px;
+    margin-top:-665px;
+    -webkit-transform:scale(.45);
 }
 .section-box-first .cloth-2{
     background: url(../images/cloth_2.png) no-repeat center;
@@ -140,11 +141,34 @@ html,body {
     z-index:10;
     width:2150px;
     height:1900px;
-    margin-left: -615px;
-    margin-top:-545px;
+    margin-left: -555px;
+    margin-top:-515px;
     -webkit-transform:scale(.45);
 }
-
+.section-box-first .cloth-3{
+    background: url(../images/cloth_3.png) no-repeat center;
+    position: fixed;
+    left:50%;
+    top:50%;
+    z-index:10;
+    width:604px;
+    height:811px;
+    margin-left: -835px;
+    margin-top:-495px;
+    -webkit-transform:scale(.45);
+}
+.section-box-first .ground-1{
+    background: url(../images/ground_1.png) no-repeat center;
+    position: fixed;
+    left:50%;
+    top:50%;
+    z-index:5;
+    width:1860px;
+    height:1295px;
+    margin-left: -1105px;
+    margin-top:-385px;
+    -webkit-transform:scale(.45);
+}
 .section-box-first  .computer{
     background: url(../images/computer.png) no-repeat center;
     position: fixed;
@@ -152,12 +176,96 @@ html,body {
     top:50%;
     z-index:10;
     width:2369px;
-    height:1843px;
+    height:2410px;
     margin-left: -1660px;
-    margin-top:-770px;
-    -webkit-transform:scale(.4);
+    margin-top:-1200px;
+    -webkit-transform:scale(.45);
+}
+.section-box-first  .paper-1{
+    background: url(../images/paper_1.png) no-repeat center;
+    position: fixed;
+    left:50%;
+    top:50%;
+    z-index:10;
+    width:1203px;
+    height:1072px;
+    margin-left: -770px;
+    margin-top:-1030px;
+    -webkit-transform:scale(.45);
+}
+.section-box-first  .paper-2{
+    background: url(../images/paper_2.png) no-repeat center;
+    position: fixed;
+    left:50%;
+    top:50%;
+    z-index:10;
+    width:333px;
+    height:496px;
+    margin-left: -20px;
+    margin-top:-300px;
+    -webkit-transform:scale(.45);
+}
+.section-box-first  .paper-3{
+    background: url(../images/paper_3.png) no-repeat center;
+    position: fixed;
+    left:50%;
+    top:50%;
+    z-index:10;
+    width:396px;
+    height:672px;
+    margin-left: 560px;
+    margin-top:-480px;
+    -webkit-transform:scale(.45);
+}
+.section-box-first  .paper-4{
+    background: url(../images/paper_4.png) no-repeat center;
+    position: fixed;
+    left:50%;
+    top:50%;
+    z-index:10;
+    width:456px;
+    height:654px;
+    margin-left: 160px;
+    margin-top:-680px;
+    -webkit-transform:scale(.45);
+}
+.section-box-first  .paper-5{
+    background: url(../images/paper_5.png) no-repeat center;
+    position: fixed;
+    left:50%;
+    top:50%;
+    z-index:9;
+    width:242px;
+    height:235px;
+    margin-left: 110px;
+    margin-top:-260px;
+    -webkit-transform:scale(.45);
 }
 
+.section-box-first  .phone-1{
+    background: url(../images/phone_1.png) no-repeat center;
+    position: fixed;
+    left:50%;
+    top:50%;
+    z-index:10;
+    width:205px;
+    height:341px;
+    margin-left: -310px;
+    margin-top:-140px;
+    -webkit-transform:scale(.45);
+}
+.section-box-first  .cole-1{
+    background: url(../images/cole_1.png) no-repeat center;
+    position: fixed;
+    left:50%;
+    top:50%;
+    z-index:10;
+    width:1516px;
+    height:1384px;
+    margin-left: -240px;
+    margin-top:-260px;
+    -webkit-transform:scale(.45);
+}
 .section-box-second .ns-bg{
     background: url(../images/bg_1.png) no-repeat center;
 }

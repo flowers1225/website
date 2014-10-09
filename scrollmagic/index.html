@@ -22,11 +22,16 @@
             <div class="ns-bg"></div>
             <div class="cloth-1"></div>
             <div class="cloth-2"></div>
+            <div class="cloth-3"></div>
+            <div class="ground-1"></div>
             <div class="computer"></div>
             <div class="paper-1"></div>
             <div class="paper-2"></div> 
             <div class="paper-3"></div>
-            <div class="paper-4"></div>    
+            <div class="paper-4"></div>  
+            <div class="paper-5"></div> 
+            <div class="phone-1"></div>
+            <div class="cole-1"></div>    
             <div class="t-top"></div>
             <div class="t-center"></div>
             <div class="t-bottom"></div>
@@ -42,15 +47,50 @@
         $('.section-box').height($(window).height()); 
     </script>
     <script type="text/javascript">
-            var twFc = TweenMax.to('.section-box-first .ns-bg', 1, {scale: 1});
+            var twFc = TweenMax.to('.section-box-first .ns-bg', 1, {scale: 1,rotation:-30,x:-100,y:500});
             var fcScene = new ScrollScene({triggerElement:'.section-box-first .t-center', duration: $(window).height()}).setTween(twFc).addTo(controller);
 
-            var twCloth1 = TweenMax.to('.section-box-first .cloth-1', 1, {scale: 1});
+            var twCloth1 = TweenMax.to('.section-box-first .cloth-1', 1, {scale: 1,x:500});
             var cl1Scene = new ScrollScene({triggerElement:'.section-box-first .t-center', duration: $(window).height()}).setTween(twCloth1).addTo(controller);
 
-            var twComputer = TweenMax.to('.section-box-first .computer', 1, {scale: 1});
+            var twCloth2 = TweenMax.to('.section-box-first .cloth-2', 1, {x:1000,y:200});
+            var cl2Scene = new ScrollScene({triggerElement:'.section-box-first .t-center', duration: $(window).height()}).setTween(twCloth2).addTo(controller);
+            
+            var twCloth3 = TweenMax.to('.section-box-first .cloth-3', 1, {rotation:-30,x:-1000,y:500});
+            var cl3Scene = new ScrollScene({triggerElement:'.section-box-first .t-center', duration: $(window).height()}).setTween(twCloth3).addTo(controller);
+
+            //可乐
+            var twCole1 = TweenMax.to('.section-box-first .cole-1', 1, {x:1000,y:200});
+            var cole1Scene = new ScrollScene({triggerElement:'.section-box-first .t-center', duration: $(window).height()}).setTween(twCole1).addTo(controller);
+
+            //地板
+            var twGround1 = TweenMax.to('.section-box-first .ground-1', 1, {y: 1000});
+            var ComputerScene = new ScrollScene({triggerElement:'.section-box-first .t-center', duration: $(window).height()}).setTween(twGround1).addTo(controller);
+
+            //手机
+            var twPhone1 = TweenMax.to('.section-box-first .phone-1', 1, {scale: 1,y:700});
+            var phone1Scene = new ScrollScene({triggerElement:'.section-box-first .t-center', duration: $(window).height()}).setTween(twPhone1).addTo(controller);
+
+            //电脑
+            var twComputer = TweenMax.to('.section-box-first .computer', 1, {x: -1000});
             var ComputerScene = new ScrollScene({triggerElement:'.section-box-first .t-center', duration: $(window).height()}).setTween(twComputer).addTo(controller);
 
+            //纸张1
+            var twPaper1 = TweenMax.to('.section-box-first .paper-1', 1, {x:-300,y:-600,rotation:180});
+            var paper1Scene = new ScrollScene({triggerElement:'.section-box-first .t-center', duration: $(window).height()}).setTween(twPaper1).addTo(controller);
+
+            //纸张2
+            var twPaper2 = TweenMax.to('.section-box-first .paper-2', 1, {x:1000,y:-600,rotation:-180});
+            var paper2Scene = new ScrollScene({triggerElement:'.section-box-first .t-center', duration: $(window).height()}).setTween(twPaper2).addTo(controller);
+            //纸张3
+            var twPaper3 = TweenMax.to('.section-box-first .paper-3', 1, {x:1000,y:0});
+            var paper3Scene = new ScrollScene({triggerElement:'.section-box-first .t-center', duration: $(window).height()}).setTween(twPaper3).addTo(controller);
+            //纸张4
+            var twPaper4 = TweenMax.to('.section-box-first .paper-4', 1, {x:0,y:-600});
+            var paper4Scene = new ScrollScene({triggerElement:'.section-box-first .t-center', duration: $(window).height()}).setTween(twPaper4).addTo(controller);
+            //纸张5
+            var twPaper5 = TweenMax.to('.section-box-first .paper-5', 1, {x:200,rotation:-180,opacity:0});
+            var paper5Scene = new ScrollScene({triggerElement:'.section-box-first .t-center', duration: $(window).height()}).setTween(twPaper5).addTo(controller);
                 fcScene.addIndicators();
     </script>
 </body>
