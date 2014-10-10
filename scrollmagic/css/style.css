@@ -93,13 +93,24 @@ html,body {
     height: 0;
 }
 .m-section .section-box {
-    position: absolute;
+    position: relative;
     top: 0;
     left: 0;
     width: 100%;
     height:100%;
 }
-.m-section .ns-bg{
+.m-section .layer{
+    width:100%;
+    height:100%;
+}
+.m-section .parallax{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+.m-section .ns-bg .inner{
     position:fixed;
     top: 50%;
     left: 50%;
@@ -111,17 +122,14 @@ html,body {
 .section-box-first{
     z-index:2;
 }
-.section-box-second{
-    z-index:1;
-}
-.section-box-first .ns-bg{
+.section-box-first .ns-bg .inner{
     background: url(../images/bg_1.jpg) no-repeat center;
     width:4171px;
     height:2250px;
     -webkit-transform:scale(.45);
 
 }
-.section-box-first .cloth-1{
+.section-box-first .cloth-1 .inner{
     background: url(../images/cloth_1.png) no-repeat center;
     position: fixed;
     left:50%;
@@ -133,7 +141,7 @@ html,body {
     margin-top:-665px;
     -webkit-transform:scale(.45);
 }
-.section-box-first .cloth-2{
+.section-box-first .cloth-2 .inner{
     background: url(../images/cloth_2.png) no-repeat center;
     position: fixed;
     left:50%;
@@ -145,7 +153,7 @@ html,body {
     margin-top:-515px;
     -webkit-transform:scale(.45);
 }
-.section-box-first .cloth-3{
+.section-box-first .cloth-3 .inner{
     background: url(../images/cloth_3.png) no-repeat center;
     position: fixed;
     left:50%;
@@ -157,7 +165,19 @@ html,body {
     margin-top:-495px;
     -webkit-transform:scale(.45);
 }
-.section-box-first .ground-1{
+.section-box-first .cloth-4 .inner{
+    background: url(../images/cloth_4.png) no-repeat center;
+    position: fixed;
+    left:50%;
+    top:50%;
+    z-index:10;
+    width:624px;
+    height:585px;
+    margin-left: 250px;
+    margin-top:-182px;
+    -webkit-transform:scale(.45);
+}
+.section-box-first .ground-1 .inner{
     background: url(../images/ground_1.png) no-repeat center;
     position: fixed;
     left:50%;
@@ -169,7 +189,7 @@ html,body {
     margin-top:-385px;
     -webkit-transform:scale(.45);
 }
-.section-box-first  .computer{
+.section-box-first  .computer .inner{
     background: url(../images/computer.png) no-repeat center;
     position: fixed;
     left:50%;
@@ -181,7 +201,7 @@ html,body {
     margin-top:-1200px;
     -webkit-transform:scale(.45);
 }
-.section-box-first  .paper-1{
+.section-box-first  .paper-1 .inner{
     background: url(../images/paper_1.png) no-repeat center;
     position: fixed;
     left:50%;
@@ -193,7 +213,7 @@ html,body {
     margin-top:-1030px;
     -webkit-transform:scale(.45);
 }
-.section-box-first  .paper-2{
+.section-box-first  .paper-2 .inner{
     background: url(../images/paper_2.png) no-repeat center;
     position: fixed;
     left:50%;
@@ -205,7 +225,7 @@ html,body {
     margin-top:-300px;
     -webkit-transform:scale(.45);
 }
-.section-box-first  .paper-3{
+.section-box-first  .paper-3 .inner{
     background: url(../images/paper_3.png) no-repeat center;
     position: fixed;
     left:50%;
@@ -217,7 +237,7 @@ html,body {
     margin-top:-480px;
     -webkit-transform:scale(.45);
 }
-.section-box-first  .paper-4{
+.section-box-first  .paper-4 .inner{
     background: url(../images/paper_4.png) no-repeat center;
     position: fixed;
     left:50%;
@@ -229,7 +249,7 @@ html,body {
     margin-top:-680px;
     -webkit-transform:scale(.45);
 }
-.section-box-first  .paper-5{
+.section-box-first  .paper-5 .inner{
     background: url(../images/paper_5.png) no-repeat center;
     position: fixed;
     left:50%;
@@ -242,7 +262,7 @@ html,body {
     -webkit-transform:scale(.45);
 }
 
-.section-box-first  .phone-1{
+.section-box-first  .phone-1 .inner{
     background: url(../images/phone_1.png) no-repeat center;
     position: fixed;
     left:50%;
@@ -254,7 +274,7 @@ html,body {
     margin-top:-140px;
     -webkit-transform:scale(.45);
 }
-.section-box-first  .cole-1{
+.section-box-first  .cole-1 .inner{
     background: url(../images/cole_1.png) no-repeat center;
     position: fixed;
     left:50%;
@@ -266,8 +286,17 @@ html,body {
     margin-top:-260px;
     -webkit-transform:scale(.45);
 }
-.section-box-second .ns-bg{
-    background: url(../images/bg_1.png) no-repeat center;
+.section-box-first  .cole-2 .inner{
+    background: url(../images/cole_2.png) no-repeat center;
+    position: fixed;
+    left:50%;
+    top:50%;
+    z-index:10;
+    width:84px;
+    height:105px;
+    margin-left: 480px;
+    margin-top:-90px;
+    -webkit-transform:scale(.45);
 }
 
 .ScrollSceneIndicators{
