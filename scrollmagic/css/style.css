@@ -120,7 +120,7 @@ html,body {
     height: 100%;   
 }
 .section-box-first{
-    z-index:2;
+    z-index:1;
 }
 .section-box-first .ns-bg .inner{
     background: url(../images/bg_1.jpg) no-repeat center;
@@ -298,7 +298,33 @@ html,body {
     margin-top:-90px;
     -webkit-transform:scale(.45);
 }
-
+.section-box-second{
+    z-index:2;
+}
+/*.section-box-second .ns-bg .inner{
+    background: url(../images/14.jpg) no-repeat center;
+    position: fixed;
+    left:50%;
+    top:50%;
+    z-index:10;
+    width:4171px;
+    height:2250px;
+    margin-left: -1715px;
+    margin-top:-1491px;
+    -webkit-transform:scale(.2) rotate(48deg);
+}*/
+.section-box-second .ns-bg .inner{
+    background: url(../images/14.jpg) no-repeat center;
+    position: fixed;
+    left:50%;
+    top:50%;
+    z-index:10;
+    width:4171px;
+    height:2250px;
+    margin-left: -1955px;
+    margin-top:-1261px;
+    -webkit-transform:scale(.075) rotate(117deg);
+}
 .ScrollSceneIndicators{
     z-index:100 !important;
 }
