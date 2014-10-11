@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title></title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="job">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!--     <link rel="stylesheet" href="css/style.css">
+ -->    
+    <link rel="stylesheet" href="http://janpaepke.github.io/ScrollMagic/css/normalize.css">
+    <link rel="stylesheet" href="http://janpaepke.github.io/ScrollMagic/css/style.css">
+    <link rel="stylesheet" href="http://janpaepke.github.io/ScrollMagic/css/examples.css">
+    <script type="text/javascript" src="js/lib/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="js/lib/greenScok/TweenMax.min.js"></script>
+    <script type="text/javascript" src="http://janpaepke.github.io/ScrollMagic/js/jquery.scrollmagic.js"></script>
+    <script type="text/javascript" src="js/lib/greenScok/plugins/ScrollToPlugin.min.js"></script>
+    <script type="text/javascript" src="js/lib/jquery.scrollmagic.debug.js"></script>
+</head>
+<body>
+<div class="scrollContent">
+    <section id="titlechart">
+        <div id="description">
+            <h1>Cascading Pins</h1>
+            <h2>On-Again, Off-Again.</h2>
+            <p>
+                Sometimes you might wish to pin and unpin the same element multiple times. To achieve this simply add multiple scenes with the same pin target.
+            </p>
+            <a href="#" class="viewsource">view source</a>
+        </div>
+    </section>
+    <section class="demo">
+        <div class="spacer s1"></div>
+        <div id="trigger" class="spacer s1"></div>
+        <div class="spacer s0"></div>
+        <div id="pin" class="box1 red">
+            <p>Unpinned.</p>
+            <a href="#" class="viewsource">view source</a>
+        </div>
+        <div class="spacer s2"></div>
+        <script>
+            $(document).ready(function($) {
+                // init controller
+                var controller = new ScrollMagic();
+
+                // show pin state
+                function updateBox (e) {
+                    if (e.type == "enter") {
+                        $("#pin p").text("Pinned.");
+                    } else {
+                        $("#pin p").text("Unpinned.");
+                    }
+                }
+
+                // build scenes
+                new ScrollScene({triggerElement: "#trigger", duration: 150})
+                    .setPin("#pin")
+                    .setClassToggle("#pin", "green")
+                    .on("enter leave", updateBox)
+                    .addTo(controller)
+                    .addIndicators(); // show indicators (requires debug extension)
+
+                new ScrollScene({triggerElement: "#trigger", duration: 150, offset: 300})
+                    .setPin("#pin")
+                    .setClassToggle("#pin", "green")
+                    .on("enter leave", updateBox)
+                    .addTo(controller)
+                    .addIndicators(); // show indicators (requires debug extension)
+
+                new ScrollScene({triggerElement: "#trigger", duration: 150, offset: 600})
+                    .setPin("#pin")
+                    .setClassToggle("#pin", "green")
+                    .on("enter leave", updateBox)
+                    .addTo(controller)
+                    .addIndicators(); // show indicators (requires debug extension)
+
+            });
+        </script>
+    </section>
+                
+    <div class="spacer s_viewport"></div>
+</div>
+</body>
+</html>
