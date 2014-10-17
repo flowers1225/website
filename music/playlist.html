@@ -1,0 +1,410 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8 />
+
+<!-- Website Design By: www.happyworm.com -->
+<title>Demo : jPlayer as an audio playlist player</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<meta name="description" content="The CSS styleable jQuery media player plugin with HTML5 support!" />
+<meta name="keywords" content="jPlayer, jQuery, jQuery plugin, media, video, audio, media player, video player, audio player, mp3, mp4, m4a, m4v, aac, h264, ogg, oga, ogv, wav, webm" />
+<meta name="company" content="Happyworm" />
+<link href="styles/jPlayer.css" rel="stylesheet" type="text/css" />
+<link rel="shortcut icon" href="/graphics/jplayer.ico" type="image/x-icon" />
+<!--[if lt IE 9]>
+  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<!--[if IE 6]>
+<link href="/css/ie6.css" rel="stylesheet" type="text/css" />
+<![endif]-->
+<link href="styles/prettify-jPlayer.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
+<script type="text/javascript" src="scripts/jquery.jplayer.js"></script>
+
+
+<style>
+<!--
+
+#player_container {
+    position: relative;
+    background-color:#eee;
+    width:418px;
+    height:80px;
+    border:1px solid #009be3;
+}
+#player_container  ul#player_controls {
+    list-style-type:none;
+    padding:0;
+    margin: 0;
+}
+#player_container  ul#player_controls li {
+    overflow:hidden;
+    text-indent:-9999px;
+}
+#player_play,
+#player_pause {
+    display: block;
+    position: absolute;
+    left:48px;
+    top:20px;
+    width:40px;
+    height:40px;
+    cursor: pointer;
+}
+#player_play {
+    background: url("../images/spirites.jpg") 0 0 no-repeat;
+}
+#player_play.jqjp_hover {
+    background: url("../images/spirites.jpg") -41px 0 no-repeat;
+}
+#player_pause {
+    background: url("../images/spirites.jpg") 0 -42px no-repeat;
+}
+#player_pause.jqjp_hover {
+    background: url("../images/spirites.jpg") -41px -42px no-repeat;
+}
+
+#ctrl_prev {
+    position: absolute;
+    left:20px;
+    top:26px;
+    background: url("../images/spirites.jpg") 0 -112px no-repeat;
+    width:28px;
+    height:28px;
+    cursor: pointer;
+}
+
+#ctrl_prev:hover {
+    background: url("../images/spirites.jpg") -29px -112px no-repeat;
+}
+
+#ctrl_prev.disabled {
+    background: url("../images/spirites.jpg") -58px -112px no-repeat;
+    cursor:default;
+}
+
+#ctrl_next {
+    position: absolute;
+    left:88px;
+    top:26px;
+    background: url("../images/spirites.jpg") 0 -141px no-repeat;
+    width:28px;
+    height:28px;
+    cursor: pointer;
+}
+
+#ctrl_next:hover {
+    background: url("../images/spirites.jpg") -29px -141px no-repeat;
+}
+
+#ctrl_next.disabled {
+    background: url("../images/spirites.jpg") -58px -141px no-repeat;
+    cursor:default;
+}
+
+
+#player_stop {
+    position: absolute;
+    left:126px;
+    top:26px;
+    background: url("../images/spirites.jpg") 0 -83px no-repeat;
+    width:28px;
+    height:28px;
+    cursor: pointer;
+}
+#player_stop.jqjp_hover {
+    background: url("../images/spirites.jpg") -29px -83px no-repeat;
+}
+#player_progress {
+    position: absolute;
+    left:164px;
+    top:32px;
+    background-color: #eee;
+    width:122px;
+    height:15px;
+}
+#player_progress_load_bar {
+    background: url("../images/bar_load.gif")  top left repeat-x;
+    width:0px;
+    height:15px;
+    cursor: pointer;
+}
+#player_progress_load_bar.jqjp_buffer {
+    background: url("../images/bar_buffer.gif")  top left repeat-x;
+}
+#player_progress_play_bar {
+    background: url("../images/bar_play.gif") top left repeat-x ;
+    width:0px;
+    height:15px;
+}
+#player_volume_min {
+    position: absolute;
+    left:296px;
+    top:32px;
+    background: url("../images/spirites.jpg") 0 -170px no-repeat;
+    width:18px;
+    height:15px;
+    cursor: pointer;
+}
+
+#player_volume_max {
+    position: absolute;
+    left:368px;
+    top:32px;
+    background: url("../images/spirites.jpg") 0 -186px no-repeat;
+    width:18px;
+    height:15px;
+    cursor: pointer;
+}
+
+#player_volume_min.jqjp_hover {
+    background: url("../images/spirites.jpg") -19px -170px no-repeat;
+}
+
+#player_volume_max.jqjp_hover {
+    background: url("../images/spirites.jpg") -19px -186px no-repeat;
+}
+
+#player_volume_bar {
+    position: absolute;
+    left:314px;
+    top:37px;
+    background: url("../images/volume_bar.gif") repeat-x top left;
+    width:46px;
+    height:5px;
+    cursor: pointer;
+}
+#player_volume_bar_value {
+    background: url("../images/volume_bar_value.gif") repeat-x top left;
+    width:0px;
+    height:5px;
+}
+
+#play_time,
+#total_time {
+    position: absolute;
+    left:164px;
+    top:49px;
+    width:122px;
+    font-size:.8em;
+    font-style:oblique;
+}
+
+#total_time {
+    text-align: right;
+}
+
+#playlist_list {
+    width:418px;
+}
+
+#playlist_list ul{
+    list-style-type:none;
+    padding:10px 20px 20px 20px;
+    margin:0 0 10px 0;
+    background-color:#ccc;
+    border:1px solid #009be3;
+    border-top:none;
+    width:378px;
+    font-size:.9em;
+}
+
+#playlist_list li{
+    padding:4px 0 4px 20px;
+    border-bottom:1px solid #eee;
+    cursor: pointer;
+}
+
+#playlist_list li.playlist_current{
+    color:#0d88c1;
+    list-style-type:square;
+    list-style-position:inside;
+    padding-left:6px;
+    cursor: default;
+}
+
+#playlist_list li.playlist_hover {
+    color:#0d88c1;
+}
+
+.miaow {
+    font-size:.8em;
+    color:#999;
+}
+
+.miaow a:link, a:visited, a:hover, a:focus, a:active {
+    color:#009be3;
+}
+-->
+</style>
+</head>
+<body class="demo" onload="">
+<div id="container">
+   
+    <div id="content_main">
+        <div class="section">
+
+            <div id="jquery_jplayer"></div>
+
+<div id="player_container">
+    <ul id="player_controls">
+        <li id="player_play"><a href="#" onClick="$('#jquery_jplayer').play(); return false;" title="play"><span>play</span></a></li>
+        <li id="player_pause"><a href="#" onClick="$('#jquery_jplayer').pause(); return false;" title="pause"><span>pause</span></a></li>
+        <li id="player_stop"><a href="#" onClick="$('#jquery_jplayer').stop(); return false;" title="stop"><span>stop</span></a></li>
+        <li id="player_volume_min"><a href="#" onClick="$('#jquery_jplayer').volume(0); return false;" title="min volume"><span>min volume</span></a></li>
+        <li id="player_volume_max"><a href="#" onClick="$('#jquery_jplayer').volume(100); return false;" title="max volume"><span>max volume</span></a></li>
+        <li id="ctrl_prev"><a href="#" onclick="playListPrev(); return false;" title="previous track"><span>previous</span></a></li>
+        <li id="ctrl_next"><a href="#" onclick="playListPrev(); return false;" title="next track"><span>next</span></a></li>
+    </ul>
+    <div id="play_time"></div>
+    <div id="total_time"></div>
+    <div id="player_progress">
+        <div id="player_progress_load_bar">
+            <div id="player_progress_play_bar"></div>
+        </div>
+    </div>
+    <div id="player_volume_bar">
+        <div id="player_volume_bar_value"></div>
+    </div>
+</div>
+
+<div id="playlist_list">
+    <ul>
+        <!-- The function displayPlayList() uses this unordered list -->
+    </ul>
+</div>
+
+        </div>
+
+    </div>
+</div>
+</body>
+<script type="text/javascript">
+
+$(document).ready(function(){
+
+    var usePlayList = false;
+    var playItem = 0;
+
+    var myPlayList = [
+        {name:"Tempered Song",filename:"http://www.jplayer.org/audio/mp3/Miaow-01-Tempered-song.mp3"},
+        {name:"Hidden",filename:"http://www.jplayer.org/audio/mp3/Miaow-02-Hidden.mp3"},
+        {name:"Lentement",filename:"http://www.jplayer.org/audio/mp3/Miaow-03-Lentement.mp3"},
+        {name:"Lismore",filename:"http://www.jplayer.org/audio/mp3/Miaow-04-Lismore.mp3"},
+        {name:"The Separation",filename:"http://www.jplayer.org/audio/mp3/Miaow-05-The-separation.mp3"},
+        {name:"Beside Me",filename:"http://www.jplayer.org/audio/mp3/Miaow-06-Beside-me.mp3"},
+        {name:"Bubble",filename:"http://www.jplayer.org/audio/mp3/Miaow-07-Bubble.mp3"},
+        {name:"Stirring of a Fool",filename:"http://www.jplayer.org/audio/mp3/Miaow-08-Stirring-of-a-fool.mp3"},
+        {name:"Partir",filename:"http://www.jplayer.org/audio/mp3/Miaow-09-Partir.mp3"},
+        {name:"Thin Ice",filename:"http://www.jplayer.org/audio/mp3/Miaow-10-Thin-ice.mp3"}
+    ];
+
+
+    $("#jquery_jplayer").jPlayer({
+        ready: function (event) {
+            displayPlayList();
+            playListEnable(true);
+        },
+        swfPath: "scripts",
+    });
+
+    $("#jquery_jplayer").jPlayerId("play", "player_play");
+    $("#jquery_jplayer").jPlayerId("pause", "player_pause");
+    $("#jquery_jplayer").jPlayerId("stop", "player_stop");
+    $("#jquery_jplayer").jPlayerId("loadBar", "player_progress_load_bar");
+    $("#jquery_jplayer").jPlayerId("playBar", "player_progress_play_bar");
+    $("#jquery_jplayer").jPlayerId("volumeMin", "player_volume_min");
+    $("#jquery_jplayer").jPlayerId("volumeMax", "player_volume_max");
+    $("#jquery_jplayer").jPlayerId("volumeBar", "player_volume_bar");
+    $("#jquery_jplayer").jPlayerId("volumeBarValue", "player_volume_bar_value");
+
+    $("#jquery_jplayer").onProgressChange( function(loadPercent, playedPercentRelative, playedPercentAbsolute, playedTime, totalTime) {
+        var myPlayedTime = new Date(playedTime);
+        var ptMin = (myPlayedTime.getMinutes() < 10) ? "0" + myPlayedTime.getMinutes() : myPlayedTime.getMinutes();
+        var ptSec = (myPlayedTime.getSeconds() < 10) ? "0" + myPlayedTime.getSeconds() : myPlayedTime.getSeconds();
+        $("#play_time").text(ptMin+":"+ptSec);
+
+        var myTotalTime = new Date(totalTime);
+        var ttMin = (myTotalTime.getMinutes() < 10) ? "0" + myTotalTime.getMinutes() : myTotalTime.getMinutes();
+        var ttSec = (myTotalTime.getSeconds() < 10) ? "0" + myTotalTime.getSeconds() : myTotalTime.getSeconds();
+        $("#total_time").text(ttMin+":"+ttSec);
+    });
+
+    $("#jquery_jplayer").onSoundComplete(endOfSong);
+
+    $("#ctrl_prev").click( function() {
+        playListPrev();
+        return false;
+    });
+
+    $("#ctrl_next").click( function() {
+        playListNext();
+        return false;
+    });
+
+    function endOfSong() {
+        if(usePlayList) {
+            playListNext();
+        }
+    }
+
+    function displayPlayList() {
+        for (i=0; i < myPlayList.length; i++) {
+            $("#playlist_list ul").append("<li id='playlist_item_"+i+"'>"+ myPlayList[i].name +"</li>");
+            $("#playlist_item_"+i).data( "index", i ).hover(
+                function() {
+                    if (playItem != $(this).data("index")) {
+                        $(this).addClass("playlist_hover");
+                    }
+                },
+                function() {
+                    $(this).removeClass("playlist_hover");
+                }
+            ).click( function() {
+                var index = $(this).data("index");
+                if (playItem != index) {
+                    playListChange( index );
+                }
+            });
+        }
+    }
+
+    function playListEnable(e) {
+        usePlayList = e;
+        if(usePlayList) {
+            playListChange( playItem );
+        } else {
+            $("#jquery_jplayer").stop();
+            $("#player_playlist_message").text("Playlists disabled");
+        }
+    }
+
+    function playListChange( index ) {
+        $("#playlist_item_"+playItem).removeClass("playlist_current");
+        $("#playlist_item_"+index).addClass("playlist_current");
+        playItem = index;
+        $("#jquery_jplayer").changeAndPlay(myPlayList[playItem].filename);
+        // $("#player_playlist_message").text(myPlayList[playItem].name);
+    }
+
+    function playListNext() {
+        if(usePlayList) {
+            var index = (playItem+1 < myPlayList.length) ? playItem+1 : 0;
+            playListChange( index );
+        }
+    }
+
+    function playListPrev() {
+        if(usePlayList) {
+            var index = (playItem-1 >= 0) ? playItem-1 : myPlayList.length-1;
+            playListChange( index );
+        }
+    }
+});
+
+</script>
+
+</html>
