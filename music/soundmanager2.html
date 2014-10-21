@@ -29,10 +29,10 @@
             <div class="mod-process" data-process=""></div>
         </div>
 
-        <ul>
-            <li data-src='http://treedom.cn/demo/music/content/songs/1.mp3'>123</li>
-            <li data-src='http://treedom.cn/demo/music/content/songs/2.mp3'>456</li>
-            <li data-src='http://treedom.cn/demo/music/content/songs/3.mp3'>678</li>
+        <ul class='play-list'>
+            <li data-src='http://treedom.cn/demo/music/content/songs/1.mp3' data-index='0'>123</li>
+            <li data-src='http://treedom.cn/music/6002233976610668.mp3' data-index='1'>456</li>
+            <li data-src='http://treedom.cn/music/6002233976610666.mp3' data-index='2'>678</li>
         </ul>
         <script src="scripts/soundmanager2.js"></script>
         <script>
@@ -55,7 +55,8 @@
         //   }
         // });
     var sondPlayer = null;
-
+    var sondURL = '';
+    var mySoundId = '';
     soundManager.setup({
         // disable or enable debug output
         debugMode: true,
@@ -69,68 +70,86 @@
     });
 
     soundManager.onready(function() {
+        SondPlayer($($('.play-list li')[0]).attr('data-src'),$($('.play-list li')[0]).attr('data-index'));    
+
+        $('.play-list').on('click', 'li', function(){
+            soundURL = $(this).attr('data-src');
+            soundId = $(this).attr('data-index');
+            SondPlayer(soundURL,soundId);
+        })        
+    })
+    var SondPlayer = function (soundURL,soundId){
+
+          soundManager.destroySound(mySoundId);
+
         var mySound = soundManager.createSound({
-            id: 'aSound',
-            url: 'http://treedom.cn/demo/music/content/songs/1.mp3',
+            id: 'aSound'+soundId,
+            url: soundURL,
             whileplaying: function() {
-            var _this = this;
-            $('.progress').html('');
-            $('.progress').append('<p>'+(this.position/this.duration)*100+'%/100%<p>');
-            $('.mod-process').attr('data-process',(this.position/this.duration)*100)
-            $('.mod-process').html('');
-            new process(document.querySelectorAll('.mod-process')[0], '#fcca32');
+                var _this = this;
+                var present = (this.position/this.duration)*100
+                $('.progress').html('<p>'+present+'%/100%<p>');
+                $('.mod-process').attr('data-process',(this.position/this.duration)*100)
+                //$('.mod-process').html('');
+                new process(document.querySelectorAll('.mod-process')[0], '#fcca32');
             },
             onfinish:function (){
                  mySound.play();
-            }
+            },
+            autoPlay: true
         });
+
+        mySoundId = mySound.id;
+
         $('.btn-play').on('click',function (){
-            mySound.play();    
+            mySound.togglePause();    
         });
         $('.btn-pause').on('click',function (){
             mySound.pause();    
-        })
-
-        //圆形进度条
-        var process = function(el, lineColor){
-            this.init = function(){
-                this.el = el;
-                this.process = this.el.getAttribute('data-process');
+        });
+    }
+    //圆形进度条
+    var process = function(el, lineColor){
+        this.init = function(){
+            this.el = el;
+            this.process = this.el.getAttribute('data-process');
+            if(this.el.getElementsByClassName('line').length == 0){
                 this.lineEl = document.createElement('div');
                 this.lineEl.className = 'line';
                 this.el.appendChild(this.lineEl);
                 this.textEl = document.createElement('div');
                 this.textEl.className = 'text';
                 this.textEl.innerHTML = this.process + '%';
-                this.el.appendChild(this.textEl);
-                this.canvasInit();
             }
-            this.canvasInit = function(){
+            
+           // this.el.appendChild(this.textEl);
+            this.canvasInit();
+        }
+        this.canvasInit = function(){
+            var width = this.el.clientWidth;
+            var sRage = -Math.PI * 0.5;
+            if(this.el.getElementsByTagName('canvas').length == 0){
                 var canvas = document.createElement('canvas');
+                //console.log(this.el.clientWidth)            
                 var width = this.lineEl.clientWidth;
-                var sRage = -Math.PI * 0.5;
-                this.ctx = canvas.getContext('2d');
-
                 canvas.setAttribute('width', width * 2 + 'px');
                 canvas.setAttribute('height', width * 2 + 'px');
                 canvas.style.width = '100%';
                 canvas.style.height = '100%';
                 this.lineEl.appendChild(canvas);
-
-                console.log()
-                this.ctx.moveTo(0, 0);
-                this.ctx.beginPath();
-                this.ctx.arc(width, width, width-1, sRage, Math.PI*this.process/50 + sRage, false);
-                this.ctx.lineWidth = 1;
-                this.ctx.strokeStyle = lineColor;
-                this.ctx.stroke();
-                this.ctx.closePath();
             }
-
-            this.init();
+            this.ctx = canvas.getContext('2d');
+            this.ctx.moveTo(0, 0);
+            this.ctx.beginPath();
+            this.ctx.arc(width, width, width-1, sRage, Math.PI*this.process/50 + sRage, false);
+            this.ctx.lineWidth = 1;
+            this.ctx.strokeStyle = lineColor;
+            this.ctx.stroke();
+            this.ctx.closePath();
         }
 
-    })
+        this.init();
+    }
     // soundManager.onready(function() {
     //     sondPlayer = new SondPlayer();
     // });
