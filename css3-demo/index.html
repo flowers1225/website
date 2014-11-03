@@ -10,6 +10,7 @@
 	<meta name="format-detection" content="telephone=no,address=no">
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<script src="js/zepto.js"></script>
 	<script src="../scrollmagic/js/lib/greenScok/TweenMax.min.js"></script>
 	<link rel="stylesheet" href="css/reset.css">
 	<style>
@@ -31,21 +32,55 @@
 			position: absolute;
 			width:5px;
 			height:5px;
-			top:200px;
-			left:10px;
 			background: #fff;
+		}
+		.m-section .dot-1{
+			top:200px;
+			left:100px;
+		}
+		.m-section .dot-2{
+			top:500px;
+			left:100px;
+		}
+		.m-section .dot-3{
+			top:300px;
+			left:200px;
+		}
+		.m-section .dot-4{
+			top:600px;
+			left:500px;
+		}
+		.m-section .dot-5{
+			top:800px;
+			left:400px;
+		}
+		.m-section .dot-6{
+			top:1000px;
+			left:800px;
+		}
+		.m-section .dot-7{
+			top:400px;
+			left:1000px;
+		}
+		.m-section .dot-8{
+			top:200px;
+			left:800px;
+		}
+		.m-section .star {
+		  position: absolute;
+		  width: 16px;
+		  height: 16px;
+		  display: none;
 		}
 	</style>
 </head>
 <body>
 
-	<div class="m-section">
-
-		<div class="btn-square">方形</div>
+	<div class="m-section" id="featureAnimation">
+<!-- 		<div class="btn-square">方形</div>
 		<div class="btn-triangle">三角形</div>
-		<div class="btn-roundness">圆形</div>
-
-		<div class="dot-box">
+		<div class="btn-roundness">圆形</div> -->
+<!-- 		<div class="dot-box">
 			<div class="dot dot-1"></div>
 			<div class="dot dot-2"></div>
 			<div class="dot dot-3"></div>
@@ -54,9 +89,68 @@
 			<div class="dot dot-6"></div>
 			<div class="dot dot-7"></div>
 			<div class="dot dot-8"></div>
-		</div>
+		</div> -->
+		<div id="featureBackground" style="pointer-events:none;"></div>
 	</div>
 	<script>
+	// var twDot1 = TweenMax.to('.dot-1', 1, {top: 100,left:400, ease: Linear.easeNone});
+	// var twDot2 = TweenMax.to('.dot-2', 2, {top: 100,left:500, ease: Linear.easeNone});
+	// var twDot3 = TweenMax.to('.dot-3', 3, {top: 100,left:600, ease: Linear.easeNone});
+	// var twDot4 = TweenMax.to('.dot-4', 4, {top: 200,left:400, ease: Linear.easeNone});
+	// var twDot5 = TweenMax.to('.dot-5', 5, {top: 200,left:600, ease: Linear.easeNone});
+	// var twDot6 = TweenMax.to('.dot-6', 6, {top: 300,left:400, ease: Linear.easeNone});
+	// var twDot7 = TweenMax.to('.dot-7', 7, {top: 300,left:500, ease: Linear.easeNone});
+	// var twDot8 = TweenMax.to('.dot-8', 8, {top: 300,left:600, ease: Linear.easeNone});
+	var master = new TimelineMax({delay:1.2}),
+    bg = $("#featureBackground"),
+    centerY = $("#featureAnimation").height() / 2,
+    centerX = $("#featureAnimation").width() / 2,
+    radius = Math.max(centerX, centerY) + 50,
+    slider = $("#ctrl_slider"),
+    sliderValue = {value:0},
+    _isOldIE = (document.all && !document.addEventListener);
+
+	function performance() {
+		var tl = new TimelineLite(),
+		  duration = 0.6,
+		  i = 20,
+		  repeats = 2,
+		  stars = [],
+		  star, angle, delay;
+		while (--i > -1) {
+		star = $("<img class='star' src='http://www.greensock.com/js/img/dot.png'/>").appendTo(bg);
+		stars.push(star);
+		angle = Math.random() * Math.PI * 2;
+		delay = Math.random() * duration;
+		tl.set(star, {display:"block"}, delay);
+		// if (_isOldIE) {
+		//   //IE8 and earlier perform better when animating top/left/width/height instead of x/y/scale.
+		//   TweenLite.set(star, {width:1, height:1, top:centerY, left:centerX});
+		//   tl.add( new TweenMax(star, duration, {
+		//     top:(centerY + Math.sin(angle) * radius) | 0,
+		//     left:(centerX + Math.cos(angle) * radius) | 0,
+		//     width:22,
+		//     height:22,
+		//     ease:Cubic.easeIn,
+		//     repeat:repeats,
+		//     repeatDelay:Math.random() * duration}),delay);
+		// } else {
+		  TweenLite.set(star, {scale:0.05, top:centerY, left:centerX, z:0.1});
+		  tl.add( new TweenMax(star, duration, {
+		    y:Math.sin(angle) * radius,
+		    x:Math.cos(angle) * radius,
+		    scale:1.5,
+		    ease:Cubic.easeIn,
+		    repeat:repeats,
+		    repeatDelay:Math.random() * duration}),delay);
+			}
+	//	}
+		//tl.fromTo(text, 3, {scale:0.1, y:centerY-36, z:0.1}, {scale:1.8, ease:SlowMo.ease.config(0.5, 0.4)}, 0.3);
+		//tl.fromTo(text, 3, {opacity:0}, {autoAlpha:1, ease:SlowMo.ease.config(0.5, 0.4, true)}, 0.3);
+		//tl.set(stars, {display:"none"});
+		return tl;
+	}
+	performance()
 	</script>
 </body>
 </html>
