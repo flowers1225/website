@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+<meta charset="utf-8">
+<title>html5 canvas</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui" />
+</head>
+<body>
+<canvas></canvas>
+<script>
+(function(bodyStyle) {
+	bodyStyle.mozUserSelect = 'none';
+	bodyStyle.webkitUserSelect = 'none';
+
+	var img = new Image();
+	var canvas = document.querySelector('canvas');
+	canvas.style.backgroundColor='transparent';
+	canvas.style.position = 'absolute';
+
+	img.addEventListener('load', function(e) {
+		var ctx;
+		var w = img.width/2,
+		h = img.height/2;
+		var offsetX = canvas.offsetLeft,
+		offsetY = canvas.offsetTop;
+		var mousedown = false;
+
+		function layer(ctx) {            
+
+			var img=document.getElementById("lamp");
+			var pat=ctx.createPattern(img,"repeat");
+			//var imageObj = new Image();
+			//imageObj.src =  '2.jpg';
+			//var pat = ctx.drawImage(imageObj, 0,0, 320, 588); 
+			ctx.fillStyle = pat;
+			ctx.fillRect(0, 0, w, h);
+		}
+
+		function eventDown(e){
+			e.preventDefault();
+			mousedown=true;
+		}
+
+		function eventUp(e){
+			e.preventDefault();
+			mousedown=false;
+		}
+
+		function eventMove(e){
+			e.preventDefault();
+			if(mousedown) {
+				if(e.changedTouches){
+					e=e.changedTouches[e.changedTouches.length-1];
+				}
+				var x = (e.clientX + document.body.scrollLeft || e.pageX) - offsetX || 0,
+				y = (e.clientY + document.body.scrollTop || e.pageY) - offsetY || 0;
+				
+				with(ctx) {
+					beginPath()
+					arc(x, y, 20, 0, Math.PI * 2);
+					fill();
+				}
+			}
+		}
+
+		canvas.width=w;
+		canvas.height=h;
+		canvas.style.backgroundImage ='url('+img.src+')';
+		canvas.style.backgroundSize = w+'px,auto';
+		ctx=canvas.getContext('2d');
+		ctx.fillStyle='transparent';
+		ctx.fillRect(0, 0, w, h);
+		layer(ctx);
+
+		ctx.globalCompositeOperation = 'destination-out';
+
+		canvas.addEventListener('touchstart', eventDown);
+		canvas.addEventListener('touchend', eventUp);
+		canvas.addEventListener('touchmove', eventMove);
+		canvas.addEventListener('mousedown', eventDown);
+		canvas.addEventListener('mouseup', eventUp);
+		canvas.addEventListener('mousemove', eventMove);
+	});
+
+	img.src = '1.jpg';
+
+})(document.body.style);
+</script>
+
+<img id="lamp" src="2.jpg" style="width:320px;height:568px;">
+</body>
+</html>

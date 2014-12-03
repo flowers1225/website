@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+<meta charset="utf-8">
+<title>html5 canvas</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui" />
+</head>
+<style type="text/css">
+    *{margin: 0;padding: 0;}
+    html,body{
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+    #canvas {
+        background:url(img/scrape_1.jpg) no-repeat;
+        background-size:cover;
+        overflow: hidden;
+    }
+</style>
+<body>
+<canvas id="canvas"></canvas>
+
+<script type="text/javascript">
+    //original code: http://jsfiddle.net/AbdiasSoftware/gM632/
+
+var canvas = document.getElementById('canvas'),
+    ctx = canvas.getContext('2d'),
+    isDown = false,
+    radius = 20,
+    pi2 = Math.PI * 2,
+    img = new Image;
+
+canvas.width = document.body.scrollWidth;
+canvas.height = document.body.scrollHeight;
+
+
+/// load top image backgroud is set with CSS, se CSS corner)
+img.onload = start;
+img.src = 'img/scrape_2.jpg';
+
+/// start: setup graphics, comp mode and handlers
+function start() {
+    ctx.drawImage(this, 0, 0, canvas.width, canvas.height);
+    
+    /// key, this will earse where next drawing is drawn
+    ctx.globalCompositeOperation = 'destination-out';
+    
+
+    canvas.addEventListener('touchstart', handleMouseDown);
+    window.addEventListener('touchend', handleMouseUp);
+    canvas.addEventListener('touchmove', handleMouseMove);
+
+    canvas.addEventListener('mousedown', handleMouseDown);
+    window.addEventListener('mouseup', handleMouseUp);
+    canvas.addEventListener('mousemove', handleMouseMove);
+}
+
+function handleMouseDown(e) {
+    isDown = true;
+    var pos = getXY(e);
+    erase(pos.x, pos.y);
+}
+function handleMouseUp(e) {
+    isDown = false;
+}
+function handleMouseMove(e) {
+    if (!isDown) return;
+    var pos = getXY(e);
+    erase(pos.x, pos.y);   
+}
+
+function getXY(e) {
+    var rect = canvas.getBoundingClientRect();
+    //console.log(e)
+    return {
+        //x: e.clientX - rect.left,
+        //y: e.clientY - rect.top
+        x: e.targetTouches[0].clientX - rect.left,
+        y: e.targetTouches[0].clientY - rect.top
+    }
+}
+
+/// simply draws an arc in any color - due to comp mode
+/// it will erase rather than draw
+function erase(x, y) {
+    ctx.beginPath();
+    ctx.arc(x, y, radius, 0, pi2);
+    ctx.fill();
+}
+</script>
+</body>
